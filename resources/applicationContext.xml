@@ -10,7 +10,8 @@
     <context:property-placeholder location="classpath:myApp.properties"/>
 
     <bean id="myPet"
-          class="com.course.spring_course.Cat">
+          class="com.course.spring_course.Cat"
+    scope="prototype">
     </bean>
 
     <bean id="myPerson"
