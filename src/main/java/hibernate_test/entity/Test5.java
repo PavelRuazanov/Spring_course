@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test1 {
+public class Test5 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
@@ -13,13 +13,15 @@ public class Test1 {
 
         try {
             Session session = factory.getCurrentSession();
-
-            Employee emp = new Employee("Павел", "Рязанов", "HR", 800);
             session.beginTransaction();
-            session.save(emp);
+//            Employee employee = session.get(Employee.class, 1);
+//            session.delete(employee);
+
+            session.createQuery("delete Employee where salary >900").executeUpdate();
+
             session.getTransaction().commit();
 
-            System.out.println("операции успешно выполнены");
+            System.out.println("Операции успешно выполнены");
         } finally {
             factory.close();
         }
